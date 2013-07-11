@@ -1,19 +1,20 @@
 <html> 
 <img src="Oxford.png"/> <br>
+
 <style>
-#AOT
+#goals
 {
 font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 width:30%;
 border-collapse:collapse;
 }
-#AOT td, #AOT th 
+#goals td, #goals th 
 {
 font-size:1em;
 border:1px solid #98bf21;
 padding:3px 7px 2px 7px;
 }
-#AOT th 
+#goals th
 {
 font-size:1.1em;
 text-align:left;
@@ -22,7 +23,7 @@ padding-bottom:4px;
 background-color:#A7C942;
 color:#ffffff;
 }
-#AOT tr:nth-child(even) {
+#goals tr:nth-child(even) {
 	color:#000000;
     background-color: #EAF2D3;
 }
@@ -38,17 +39,17 @@ font-size:14px;
 }
 </style>
 
-<p class="trebMS20">Attempts On Target - Analysis</p>
+<p class="trebMS20"> Goals Scored (Left Foot) - Analysis</p>
 
-<table id="AOT" cellspacing="0">
+<table id="goals">
   <tbody>
     <tr>
         <th>PlayerID<br> </th> 
      	<th>Surname<br> </th> 
         <th>Forename<br></th>
-        <th>TotalAOT<br></th>
-        <th>TotalAFT<br></th>
-     	<th>PercentageAOT<br></th>
+        <th>TotalLFGoals<br></th>
+        <th>TotalLFOn<br></th>
+        <th>TotalLFOff<br></th>
         </tr>
    <tr>
 <?php
@@ -66,22 +67,19 @@ $dbname = 'testdb';
 
 mysql_select_db($dbname);
 
-$query  = "SELECT P.PlayerID, P.Surname, P.Forename, SUM( AOT.OpenPlay ) AS TotalAOT, 
-SUM( AFT.OpenPlay ) AS TotalAFT, (
-(
-SUM( AOT.OpenPlay ) / ( SUM( AOT.OpenPlay ) + SUM( AFT.OpenPlay ) )
-) *100
-) AS PercentageAOT
+$query  = "SELECT P.PlayerID, P.Surname, P.Forename, 
+SUM( LF.Goals ) as TotalLFGoals, 
+SUM( LF.ShotsOn) as TotalLFOn,
+SUM( LF.ShotsOff) as TotalLFOff
 FROM Players AS P
 INNER JOIN PlayerMatches AS PM ON PM.PlayerID = P.PlayerID
-INNER JOIN AttemptsOnTarget AS AOT ON AOT.ID = PM.ID
-INNER JOIN AttemptsOffTarget AS AFT ON AFT.ID = PM.ID
 INNER JOIN MatchInfo AS MI ON MI.ID = PM.ID
 INNER JOIN Positions AS PO ON PO.PositionID = MI.PositionID
 AND PO.Position = 'Attacker'
+INNER JOIN LeftFoot AS LF ON LF.ID = PM.ID
 GROUP BY P.PlayerID
-HAVING SUM( AOT.OpenPlay ) >30
-ORDER BY TotalAOT DESC";
+ORDER BY TotalLFGoals DESC,TotalLFOn DESC,TotalLFOff DESC
+LIMIT 0 , 10";
 
 $result = mysql_query($query);
  
@@ -92,14 +90,19 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
     echo "<tr>";
     echo "<td> {$row['PlayerID']}</td>";
     $DataSet->AddPoint($row['PlayerID'],"XLabel");
+   
     echo "<td> {$row['Surname']}</td>";
     echo "<td> {$row['Forename']} </td>";
-    echo "<td> {$row['TotalAOT']} </td>";
-    $DataSet->AddPoint($row["TotalAOT"],"Serie1");
-    echo "<td> {$row['TotalAFT']} </td>";
-    $DataSet->AddPoint($row["TotalAFT"],"Serie2");
-    echo "<td> {$row['PercentageAOT']} </td>";
-    $DataSet->AddPoint($row["PercentageAOT"],"Serie3");
+    
+    echo "<td> {$row['TotalLFGoals']} </td>";
+    $DataSet->AddPoint($row["TotalLFGoals"],"Serie1");
+    
+    echo "<td> {$row['TotalLFOn']} </td>";
+    $DataSet->AddPoint($row["TotalLFOn"],"Serie2");
+    
+    echo "<td> {$row['TotalLFOff']} </td>";
+    $DataSet->AddPoint($row["TotalLFOff"],"Serie3");
+    
     echo "</tr>";
 
 }
@@ -108,9 +111,9 @@ $DataSet->AddAllSeries();
 $DataSet->SetAbsciseLabelSerie("XLabel"); 
 $DataSet->RemoveSerie("XLabel");
  
-$DataSet->SetSerieName("Total AOT","Serie1");  
-$DataSet->SetSerieName("Total AFT","Serie2");  
-$DataSet->SetSerieName("PercentageAOT","Serie3");
+$DataSet->SetSerieName("Total LF Goals","Serie1");
+$DataSet->SetSerieName("Total LF ShotsOn","Serie2"); 
+$DataSet->SetSerieName("Total LF ShotsOff","Serie3");   
 
 $DataSet->SetXAxisName("Player ID"); 
 
@@ -133,10 +136,10 @@ $DataSet->SetXAxisName("Player ID");
   
  // Finish the graph  
  $Test->setFontProperties("Fonts/tahoma.ttf",8);  
- $Test->drawLegend(596,80,$DataSet->GetDataDescription(),255,255,255);  
+ $Test->drawLegend(596,100,$DataSet->GetDataDescription(),255,255,255);  
  $Test->setFontProperties("Fonts/tahoma.ttf",10);  
- $Test->drawTitle(50,22,"Attempts on Target",50,50,50,585);  
- $Test->Render("AOT.png");  
+ $Test->drawTitle(50,22,"Left Foot",50,50,50,585);  
+ $Test->Render("LF.png");  
 ?>
 
    </tbody>
@@ -145,7 +148,7 @@ $DataSet->SetXAxisName("Player ID");
 <br>
 
 <div style="position:absolute;top:170px;right:80px;">
-<img src="AOT.png"/>
+<img src="LF.png"/>
 </div>
 
 <button onClick="history.go(-1)">Back</button>

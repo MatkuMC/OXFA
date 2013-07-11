@@ -1,6 +1,6 @@
 <html> 
 <img src="Oxford.png"/> <br>
-<h2> Successful Passes (Final Third) - Analysis</h2>
+
 <style>
 #SPFT
 {
@@ -27,8 +27,19 @@ color:#ffffff;
 	color:#000000;
     background-color: #EAF2D3;
 }
+p.serif{font-family:"Times New Roman",Times,serif;}
+p.sansserif{font-family:Arial,Helvetica,sans-serif;}
+p.trebMS20{
+font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+font-size:20px;
+}
+p.trebMS14{
+font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+font-size:14px;
+}
 </style>
 
+<p class="trebMS20"> Successful Passes (Final Third) - Analysis</p>
 <table id="SPFT">
   <tbody>
     <tr>
@@ -38,8 +49,8 @@ color:#ffffff;
         <th>TotalSP<br></th>
         <th>Total<br></th>
      	<th>TotalUSP<br></th>
-     	<th>PercentageSP<br></th>
-     	<th>PercentageUSP<br></th>
+     	<th>SP%<br></th>
+     	<th>USP%<br></th>
         </tr>
    <tr>
 <?php
