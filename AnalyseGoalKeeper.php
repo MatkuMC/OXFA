@@ -107,7 +107,7 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
 
 	echo "<div style=\"position:absolute;top:370px;right:365px;\">";
 	echo "<form action=\"GoalKeeperModel.php\" method=\"post\" enctype=\"multipart/form-data\">";
-	echo "Select goal keeper :";
+	echo "Select goal keeper to substitute:";
     echo "<select name ='GoalKeeper'> {$PlayerIDList} </select><br><br>";
     echo "<input type='submit' value='Analyze'> </br> ";
     echo "</div>";

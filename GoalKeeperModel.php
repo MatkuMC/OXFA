@@ -46,7 +46,7 @@ font-size:14px;
 #GKC
 {
 font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-width:95%;
+width:30%;
 border-collapse:collapse;
 }
 #GKC td, #GKC th 
@@ -81,7 +81,7 @@ $selectval=$_POST["GoalKeeper"];
 
 $values=explode(":",$selectval);
 
-echo "<p class=\"trebMS14\">Substituting Goal Keeper = $values[5] $values[4]</p>";
+echo "<p class=\"trebMS14\">Substituting Goal Keeper in the model = $values[5] $values[4]</p>";
 
 $dbhost = 'localhost';
 $dbuser = 'root';
@@ -127,16 +127,18 @@ $TotalConcededIBForGK = $values[2];
 $TotalShotsOnIBForGK = $row['TotalShotsOnIB'];
 
 $PercentageConIB = ((double)$TotalConcededIBForGK/(double)$TotalShotsOnIBForGK)*100;
+$roundedConIB = round($PercentageConIB);
 
-echo "<p class=\"trebMS14\">Percentage goals conceded inside box : $PercentageConIB % </p>";
+echo "<p class=\"trebMS14\">Percentage goals conceded inside box : $roundedConIB % </p>";
 
 $TotalConcededOBForGK = $values[3];
 $TotalShotsOnOBForGK = $row['TotalShotsOnOB'];
 
 $PercentageConOB = ((double)$TotalConcededOBForGK/(double)$TotalShotsOnOBForGK)*100;
+$roundedConOB = round($PercentageConOB);
 
 }
-echo "<p class=\"trebMS14\">Percentage goals conceded outside box : $PercentageConOB % </p>";
+echo "<p class=\"trebMS14\">Percentage goals conceded outside box : $roundedConOB % </p>";
 
 echo "<table id=\"GK\" cellspacing=\"0\">";
 echo  "<tbody>";
@@ -179,7 +181,7 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
  echo "</tbody>";
  echo "</table>";
 
-echo "<div style=\"position:absolute;top:350px;right:580px;\">"; 
+echo "<div style=\"position:absolute;top:352px;right:180px;\">"; 
 echo "<table id=\"GKC\" cellspacing=\"0\">";
 echo  "<tbody>";
 echo    "<tr>";
@@ -232,7 +234,7 @@ echo "<p class=\"trebMS14\">Actual number of Goals : $actualTotalGoals </p>";
 
 $delta = $predRoundedTotalGoals - $actualTotalGoals;
 
-if($delta >= 6) {
+if($delta > 6) {
 	echo "<p class=\"trebMS20\">Swansea City would have been relegated. </p>";
 } else {
 	echo "<p class=\"trebMS20\">Swansea City would have qualified for next season. </p>";
