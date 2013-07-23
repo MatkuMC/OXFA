@@ -99,7 +99,7 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
     echo "<td> {$row['TotalConcededOB']} </td>";
     echo "</tr>";
     
-    $PlayerIDList="{$PlayerIDList} <option value='{$row['PlayerID']}:{$row['TeamID']}:{$row['TotalConcededIB']}:{$row['TotalConcededOB']}'> {$row['PlayerID']} </option> ";
+    $PlayerIDList="{$PlayerIDList} <option value='{$row['PlayerID']}:{$row['TeamID']}:{$row['TotalConcededIB']}:{$row['TotalConcededOB']}:{$row['Surname']}:{$row['Forename']}'> {$row['PlayerID']} </option> ";
 
 }
  echo "</tbody>";
