@@ -140,6 +140,8 @@ $roundedConOB = round($PercentageConOB);
 }
 echo "<p class=\"trebMS14\">Percentage goals conceded outside box : $roundedConOB % </p>";
 
+echo "<p class=\"trebMS14\"><b>Total shots on target by EPL teams: </b></p>";
+
 echo "<table id=\"GK\" cellspacing=\"0\">";
 echo  "<tbody>";
 echo    "<tr>";
@@ -181,7 +183,8 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC))
  echo "</tbody>";
  echo "</table>";
 
-echo "<div style=\"position:absolute;top:352px;right:180px;\">"; 
+echo "<div style=\"position:absolute;top:340px;right:180px;\">";
+echo "<p class=\"trebMS14\"><b>Total goals conceded by EPL teams: </b></p>"; 
 echo "<table id=\"GKC\" cellspacing=\"0\">";
 echo  "<tbody>";
 echo    "<tr>";
