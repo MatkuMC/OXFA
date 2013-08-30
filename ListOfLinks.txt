@@ -1,0 +1,12 @@
+http://localhost:8888/OXFA/Home.php
+http://localhost:8888/OXFA/Homes.php
+http://localhost:8888/OXFA/AnalyseAttacker.php
+http://localhost:8888/OXFA/AnalyseAttackerAOT.php
+http://localhost:8888/OXFA/AnalyseAttackerGoals.php
+http://localhost:8888/OXFA/AnalyseAttackerSPFT.php
+http://localhost:8888/OXFA/AnalyseAttackerLF.php
+http://localhost:8888/OXFA/AnalyseAttackerRF.php
+http://localhost:8888/OXFA/AnalyseGoalKeeper.php
+http://localhost:8888/OXFA/GoalKeeperModel.php
+http://localhost:8888/OXFA/AnalysePointsPerGoal.php
+http://localhost:8888/OXFA/PointsPerGoalModel.php

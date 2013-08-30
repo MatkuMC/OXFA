@@ -161,6 +161,7 @@ INNER JOIN Players AS P ON P.PlayerID = PM.PlayerID
 AND P.TeamID != T.TeamID
 INNER JOIN InsideBox AS IB ON IB.ID = PM.ID
 INNER JOIN OutsideBox AS OB ON OB.ID = PM.ID
+WHERE T.TeamID = 105
 GROUP BY T.TeamID
 ORDER BY T.TeamName ASC";
 
@@ -204,6 +205,7 @@ INNER JOIN Players AS P ON P.PlayerID = PM.PlayerID
 AND P.TeamID != T.TeamID
 INNER JOIN InsideBox AS IB ON IB.ID = PM.ID
 INNER JOIN OutsideBox AS OB ON OB.ID = PM.ID
+WHERE T.TeamID = 105
 GROUP BY T.TeamID
 ORDER BY T.TeamName ASC";
 

@@ -40,6 +40,7 @@ font-size:14px;
 
 <p class="trebMS20">Attempts On Target - Analysis</p>
 
+// Draw out the table headers
 <table id="AOT" cellspacing="0">
   <tbody>
     <tr>
